@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+//reaction schema
 const reactionSchema = new Schema(
     {
     reactionId: {
