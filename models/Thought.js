@@ -2,6 +2,7 @@
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
 
+//thoughts schema
 const thoughtSchema = new Schema(
   {
     thoughtText: {
@@ -28,12 +29,13 @@ const thoughtSchema = new Schema(
   {
     toJSON: {
       getters: true,
-      virtuals: true, // Include virtual properties when converting to JSON
+      virtuals: true, 
     },
     id: false,
   }
 );
 
+//adds friend count virtual to thought
 thoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });

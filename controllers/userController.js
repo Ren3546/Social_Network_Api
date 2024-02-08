@@ -10,6 +10,7 @@ module.exports = {
       });
   },
 
+  //get one user
   getOneUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -26,6 +27,7 @@ module.exports = {
       });
   },
 
+  //make a new user
   newUser(req, res) {
     User.create(req.body)
       .then(results => res.json(results))
@@ -34,6 +36,7 @@ module.exports = {
       });
   },
 
+  //update user info
   updateUser(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
@@ -46,14 +49,16 @@ module.exports = {
       });
   },
 
+  //delete a user
   deleteUser(req, res) {
     User.findByIdAndDelete({ _id: req.params.userId })
       .then(results => res.json(results))
       .catch(err => {
         if (err) throw err;
       });
-  },
+  },  
 
+  //add a friend to user
   addFriend(req, res) {
   User.findOneAndUpdate(
     { _id: req.params.userId },
@@ -72,6 +77,7 @@ module.exports = {
     });
 },
 
+  //remove a friend from user
   removeFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },

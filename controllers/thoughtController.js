@@ -13,6 +13,7 @@ module.exports = {
     });
 },
 
+//get one thought
 getOneThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
@@ -22,7 +23,7 @@ getOneThought(req, res) {
           return res.status(404).json({ message: 'No thought with that id' });
         }
         thought.reactionCount = thought.reactions.length; // Access the reactions array length
-        delete thought.reactions;
+        thought.reactions;
         res.json(thought);
       })
       .catch(err => {
@@ -31,6 +32,7 @@ getOneThought(req, res) {
       });
   },
 
+//make a new thought
 newThought(req, res) {
   Thought.create(req.body)
     .then(thought => {
@@ -41,6 +43,7 @@ newThought(req, res) {
     });
 },
 
+//delete thought
 deleteThought(req, res) {
   Thought.findOneAndDelete({ _id: req.params.thoughtId })
     .then(thought => {
@@ -54,6 +57,7 @@ deleteThought(req, res) {
     });
 },
 
+//make a new reaction
 createReaction(req, res) {
   const { thoughtId } = req.params;
   const { reactionBody, username } = req.body;
@@ -74,6 +78,7 @@ createReaction(req, res) {
     });
 },
 
+//delete a reaction
 deleteReaction(req, res) {
   const { thoughtId, reactionId } = req.params;
 
